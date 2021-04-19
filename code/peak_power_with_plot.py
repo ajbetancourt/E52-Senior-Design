@@ -230,12 +230,12 @@ def main():
 
 	"""#################SPECTRUM PLOT#################"""
 	#plot the spectrum trace (optional)
-	# plt.figure(1)
-	# plt.subplot(111, facecolor='k')
-	# plt.plot(freq, traceData, 'y')
-	# plt.xlabel('Frequency (Hz)')
-	# plt.ylabel('Amplitude (dBm)')
-	# plt.title('Spectrum')
+	plt.figure(1)
+	plt.subplot(111, facecolor='k')
+	plt.plot(freq, traceData, 'y')
+	plt.xlabel('Frequency (Hz)')
+	plt.ylabel('Amplitude (dBm)')
+	plt.title('Spectrum')
 	
 	#annotate measurement
 	plt.axvline(x=peakPowerFreq)
@@ -245,18 +245,17 @@ def main():
 			peakPowerFreq/1e6), color='white')
 	
 	#BONUS clean up plot axes
-	# xmin = np.amin(freq)
-	# xmax = np.amax(freq)
-	# plt.xlim(xmin,xmax)
-	# ymin = np.amin(trace)-10
-	# ymax = np.amax(trace)+10
-	# plt.ylim(ymin,ymax)
+	xmin = np.amin(freq)
+	xmax = np.amax(freq)
+	plt.xlim(xmin,xmax)
+	ymin = np.amin(trace)-10
+	ymax = np.amax(trace)+10
+	plt.ylim(ymin,ymax)
 
-	# plt.show()
+	plt.show()
 	
 	print('Disconnecting.')
 	rsa.DEVICE_Disconnect()
-	return peakPower
 
 if __name__ == "__main__":
 	main()

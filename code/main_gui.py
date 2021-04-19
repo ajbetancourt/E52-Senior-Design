@@ -11,9 +11,9 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg, NavigationTool
 from matplotlib.figure import Figure
 from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
-from run.py import run as runClick
+import run.py as runClick
 
- 
+
 from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 import numpy as np
@@ -72,7 +72,7 @@ class MainWindow(QtWidgets.QMainWindow):
         btnLayout = QHBoxLayout()
   
         runButton = QPushButton('Run', self)
-        runButton.clicked.connect(runClick) ##fix later 
+        runButton.clicked.connect(runClick.motor_data(7)) ##fix later 
         btnLayout.addWidget(runButton)
 
         # saveButton = QPushButton('Save File', self)
@@ -96,13 +96,16 @@ class MainWindow(QtWidgets.QMainWindow):
         layWidget = QWidget()
         layWidget.setLayout(layout)
         self.setCentralWidget(layWidget)
+    
     def plot_pts():
         ''' These are just for plot testing they will be from a txt file, the end goal being to map in 
         real time --function will call the text file as its being edited, or will upload full txt file'''
-        zvals = [0,0,0,0,1,1,1,1,2,2,2,2,3,3,3,3] 
-        xvals = [0,1,2,3,0,1,2,3,0,1,2,3,0,1,2,3]
-        yvals = [0,1,2,3,4,5,6]
-        b_field = [11,10,9,8,7,6,5,4,3,2,1,0]
+        zvals = []
+        for l in range (0,8):
+            zvals[l] = l
+        ##xvals = [0,1,2,3,0,1,2,3,0,1,2,3,0,1,2,3]
+        ##yvals = [0,1,2,3,4,5,6]
+        b_field_z = runClick.plot_points
         #for x,y,z,b in zip(xvals,yvals,zvals,b_field):
 
 if __name__ =='__main__':
