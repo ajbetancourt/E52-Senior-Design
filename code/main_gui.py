@@ -11,9 +11,8 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg, NavigationTool
 from matplotlib.figure import Figure
 from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
-from run import runClick
-from save import saveClick
-from upload import uploadClick
+from run.py import run as runClick
+
  
 from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
@@ -73,16 +72,16 @@ class MainWindow(QtWidgets.QMainWindow):
         btnLayout = QHBoxLayout()
   
         runButton = QPushButton('Run', self)
-        #runButton.clicked.connect(runClick) ##fix later 
+        runButton.clicked.connect(runClick) ##fix later 
         btnLayout.addWidget(runButton)
 
-        saveButton = QPushButton('Save File', self)
-        #saveButton.clicked.connect(saveClick) ##fix later 
-        btnLayout.addWidget(saveButton)
+        # saveButton = QPushButton('Save File', self)
+        # #saveButton.clicked.connect(saveClick) ##fix later 
+        # btnLayout.addWidget(saveButton)
 
-        uploadButton = QPushButton('Upload', self)
-        # uploadButton.clicked.connect(uploadClick) ##fix later
-        btnLayout.addWidget(uploadButton)
+        # uploadButton = QPushButton('Upload', self)
+        # # uploadButton.clicked.connect(uploadClick) ##fix later
+        # btnLayout.addWidget(uploadButton)
      
         combo = QComboBox()
         combo.addItems(['1/8"','1/2"','3/4"','1"'])

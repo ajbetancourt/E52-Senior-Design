@@ -23,7 +23,6 @@ PATH system environment variable
 ################################################################
 """
 os.chdir("C:\\Tektronix\\RSA_API\\lib\\x64")
-<<<<<<< HEAD
 ##rsa = cdll.LoadLibrary("RSA_API.dll")
 rsa = cdll.LoadLibrary("C:\\Tektronix\\RSA_API\\lib\\x64\\RSA_API.dll")
 
@@ -42,30 +41,31 @@ class Spectrum_Settings(Structure):
 	('actualFreqStepSize', c_double), 
 	('actualRBW', c_double),
 	('actualVBW', c_double), 
-=======
-rsa = cdll.LoadLibrary("C:\\Tektronix\\RSA_API\\lib\\x64\\RSA_API.dll")
-
-
-"""#################CLASSES AND FUNCTIONS#################"""
-#create Spectrum_Settings data structure
-class Spectrum_Settings(Structure):
-	_fields_ = [('span', c_double),
-	('rbw', c_double),
-	('enableVBW', c_bool),
-	('vbw', c_double),
-	('traceLength', c_int),
-	('window', c_int),
-	('verticalUnit', c_int), ##0 is dBm, 1 is Watt, 2 Volt, 3 amp
-	('actualStartFreq', c_double),
-	('actualStopFreq', c_double),
-	('actualFreqStepSize', c_double),
-	('actualRBW', c_double),
-	('actualVBW', c_double),
->>>>>>> 6188c3d7f9215ccd8beae2374f5ec6a4a60484b0
 	('actualNumIQSamples', c_double)]
 
 class Spectrum_TraceInfo(Structure):
 	_fields_ = [('timestamp', c_int64), ('acqDataStatus', c_uint16)]
+
+def userLoop(whichLoop):
+	if whichLoop == 1:
+		cf = c_double(4.1e6)
+		return cf
+	elif whichLoop == 2:
+		cf = c_double(4.1e6)
+		return cf
+	elif whichLoop == 3:
+		cf = c_double(4.1e6)
+		return cf
+	else:
+		print("invalid loop choice")
+		cf = c_double(4.1e6) ##default
+		return cf
+	
+
+def increment(userInc):
+	userInc = 0
+	return userInc
+
 
 def search_connect():
     #search/connect variables
@@ -160,7 +160,7 @@ def main():
 		if userSelect = loop
 			cf = x
 	'''
-	cf = rsa.CONFIG_GetCenterFreq()
+	cf = userLoop(1)
 	rsa.CONFIG_SetCenterFreq(cf) ##if this doesnt work make cf a function of loop input
 	rsa.SPECTRUM_SetEnable(enable)
 	rsa.SPECTRUM_SetDefault()
@@ -169,10 +169,10 @@ def main():
 	#configure desired spectrum settings
 	#some fields are left blank because the default
 	#values set by SPECTRUM_SetDefault() are acceptable
-	specSet.span = c_double(500e3)
+	specSet.span = c_double(1e6)
 	specSet.rbw = c_double(50e3)
 	#specSet.enableVBW = 
-	specSet.vbw = c_douuble(50e3)
+	specSet.vbw = c_double(50e3)
 	specSet.traceLength = c_int(801)
 	#specSet.window = 
 	#specSet.verticalUnit = 
