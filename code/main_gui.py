@@ -35,8 +35,7 @@ class plot(FigureCanvasQTAgg):
   
         n = 100
 
-        # For each set of style and range settings, plot n random points in the box
-        # defined by x in [23, 32], y in [0, 100], z in [zlow, zhigh].
+
         x,y,z,b = plot_points()
 
         ax.scatter(xs, ys, zs, c=c, marker=m)
@@ -54,17 +53,6 @@ class MainWindow(QtWidgets.QMainWindow):
         layout = QGridLayout()      
 
         sc = plot(self, width=5, height=4, dpi=100)
-        # def color_gradient():
-        #     #max min value for b field then linear gradient from blue (high) to red(low)
-
-        # def upload():
-        #     #df
-        # def run():
-        #     #df
-
-        # def save():
-        #     #df
-
 
         toolbar = NavigationToolbar(sc, self)
 
@@ -74,7 +62,7 @@ class MainWindow(QtWidgets.QMainWindow):
         runButton.clicked.connect(runClick.motor_data(7)) ##fix later 
         btnLayout.addWidget(runButton)
 
-        
+
 
         motorCal = QPushButton('Move Motor Down', self)
         motorCal.clicked.connect(step_motor.move_down()) ##fix later
