@@ -12,6 +12,7 @@ from matplotlib.figure import Figure
 from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 import run.py as runClick
+import zaxistest as step_motor
 
 
 from mpl_toolkits.mplot3d import Axes3D
@@ -36,12 +37,10 @@ class plot(FigureCanvasQTAgg):
 
         # For each set of style and range settings, plot n random points in the box
         # defined by x in [23, 32], y in [0, 100], z in [zlow, zhigh].
-        for c, m, zlow, zhigh in [('r', 'o', -50, -25), ('b', '^', -30, -5)]:
-            xs = randrange(n, 23, 32)
-            ys = randrange(n, 0, 100)
-            zs = randrange(n, zlow, zhigh)
-            ax.scatter(xs, ys, zs, c=c, marker=m)
+        x,y,z,b = plot_points()
 
+        ax.scatter(xs, ys, zs, c=c, marker=m)
+        
         ax.set_xlabel('X inches ')
         ax.set_ylabel('Y inches')
         ax.set_zlabel('Z inches')
@@ -75,13 +74,11 @@ class MainWindow(QtWidgets.QMainWindow):
         runButton.clicked.connect(runClick.motor_data(7)) ##fix later 
         btnLayout.addWidget(runButton)
 
-        # saveButton = QPushButton('Save File', self)
-        # #saveButton.clicked.connect(saveClick) ##fix later 
-        # btnLayout.addWidget(saveButton)
+        
 
-        # uploadButton = QPushButton('Upload', self)
-        # # uploadButton.clicked.connect(uploadClick) ##fix later
-        # btnLayout.addWidget(uploadButton)
+        motorCal = QPushButton('Move Motor Down', self)
+        motorCal.clicked.connect(step_motor.move_down()) ##fix later
+        btnLayout.addWidget(motorCal)
      
         combo = QComboBox()
         combo.addItems(['1/8"','1/2"','3/4"','1"'])
@@ -100,13 +97,14 @@ class MainWindow(QtWidgets.QMainWindow):
     def plot_pts():
         ''' These are just for plot testing they will be from a txt file, the end goal being to map in 
         real time --function will call the text file as its being edited, or will upload full txt file'''
-        zvals = []
+        zvals = [0,0,0,0,0,0,0,0]
         for l in range (0,8):
             zvals[l] = l
-        ##xvals = [0,1,2,3,0,1,2,3,0,1,2,3,0,1,2,3]
-        ##yvals = [0,1,2,3,4,5,6]
+        xvals = [0,0,0,0,0,0,0,0]
+        yvals = [0,0,0,0,0,0,0,0]
         b_field_z = runClick.plot_points
-        #for x,y,z,b in zip(xvals,yvals,zvals,b_field):
+        return xvals, yvals, b_field_z
+
 
 if __name__ =='__main__':
     app = QtWidgets.QApplication(sys.argv)
