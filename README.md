@@ -3,7 +3,7 @@ This project aims to interface a CNC machine with a spectrum analyzer to automat
 this will be tested with a proximity sensing loop. This project is incomplete at the moment. Everything will be ran through the raspberry pi
 
 
-Necessary Downloads:
+Necessary Downloads:\n
 Python 2.7+
 numpy
 matplotlib
