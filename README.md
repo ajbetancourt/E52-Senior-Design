@@ -3,7 +3,7 @@ This project aims to interface a CNC machine with a spectrum analyzer to automat
 this will be tested with a proximity sensing loop. This project is incomplete at the moment. Everything will be ran through the raspberry pi
 
 
-Necessary Downloads:\n
+Necessary Downloads:
 Python 2.7+
 numpy
 matplotlib
@@ -12,8 +12,9 @@ RPiMotorLib
 
 
 CNC interfacing:
+A CNC machine was repurposed given its 3D maneuverability.  3 NEMA stepper motors, current design only incorporates one.
 Using a raspberry pi, and RPI-Motor Lib to control NEMA stepper motors
-List of downloads:
+
 
 
 Spectrum Analyzer:
