@@ -42,7 +42,8 @@ class plot(FigureCanvasQTAgg):
         x,y,z,b = plot_pts()
 
         ax.scatter(x, y, z, c=c, marker=m)
-        ax
+        for i, txt in enumerate(b):
+            ax.annotate(b, (x[i],y[i], z[i]))
         
         ax.set_xlabel('X inches ')
         ax.set_ylabel('Y inches')
@@ -103,10 +104,10 @@ def plot_pts():
     xvals = [0,0,0,0,0,0]
     yvals = [0,0,0,0,0,0]
     
-    for i in range(0,inc+1):
-        str_bfieldz = []
-        str_bfieldz[i] = str(bfieldz[i])
-    return xvals, yvals, str_bfieldz
+    # for i in range(0,inc+1):
+    #     str_bfieldz = []
+    #     str_bfieldz[i] = str(bfieldz[i])
+    return xvals, yvals, bfieldz
 
 
 if __name__ =='__main__':
