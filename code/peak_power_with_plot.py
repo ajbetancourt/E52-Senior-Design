@@ -48,17 +48,17 @@ class Spectrum_TraceInfo(Structure):
 
 def userLoop(whichLoop):
 	if whichLoop == 1:
-		cf = c_double(4.1e6)
+		cf = c_double(4.2e6)
 		return cf
 	elif whichLoop == 2:
-		cf = c_double(4.1e6)
+		cf = c_double(4.2e6)
 		return cf
 	elif whichLoop == 3:
-		cf = c_double(4.1e6)
+		cf = c_double(4.2e6)
 		return cf
 	else:
 		print("invalid loop choice")
-		cf = c_double(4.1e6) ##default
+		cf = c_double(4.2e6) ##default
 		return cf
 	
 
@@ -169,13 +169,13 @@ def main():
 	#configure desired spectrum settings
 	#some fields are left blank because the default
 	#values set by SPECTRUM_SetDefault() are acceptable
-	specSet.span = c_double(1e6)
-	specSet.rbw = c_double(50e3)
+	specSet.span = c_double(7.5e6)
+	specSet.rbw = c_double(15e3)
 	#specSet.enableVBW = 
-	specSet.vbw = c_double(50e3)
+	specSet.vbw = c_double(15e3)
 	specSet.traceLength = c_int(801)
 	#specSet.window = 
-	#specSet.verticalUnit = 
+	#specSet.verticalUnit = 25
 	#specSet.actualStartFreq = 
 	#specSet.actualFreqStepSize = 
 	#specSet.actualRBW = 

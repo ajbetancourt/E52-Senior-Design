@@ -11,13 +11,14 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg, NavigationTool
 from matplotlib.figure import Figure
 from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
-import run.py as runClick
+import run as runClick
 import zaxistest as step_motor
 
 
 from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 import numpy as np
+
 
 class plot(FigureCanvasQTAgg):
     def __init__(self, parent=None, width=5, height=4, dpi=100):   
@@ -49,6 +50,8 @@ class plot(FigureCanvasQTAgg):
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self, *args, **kwargs):
         super(MainWindow, self).__init__(*args, **kwargs)
+        
+        increments = 5
 
         layout = QGridLayout()      
 
@@ -59,18 +62,22 @@ class MainWindow(QtWidgets.QMainWindow):
         btnLayout = QHBoxLayout()
   
         runButton = QPushButton('Run', self)
-        runButton.clicked.connect(runClick.motor_data(7)) ##fix later 
+        runButton.clicked.connect(runClick.motor_data(increments)) ##fix later 
         btnLayout.addWidget(runButton)
 
 
 
         motorCal = QPushButton('Move Motor Down', self)
-        motorCal.clicked.connect(step_motor.move_down()) ##fix later
+        motorCal.clicked.connect(step_motor.calibrate_down()) ##fix later
         btnLayout.addWidget(motorCal)
-     
-        combo = QComboBox()
-        combo.addItems(['1/8"','1/2"','3/4"','1"'])
-        btnLayout.addWidget(combo)
+
+        motorCalUp = QPushButton("Move Motor Up", self)
+        motorCalUp.clicked.connect(step_motor.calibrate_down())
+        
+        # combo = QComboBox()
+        # combo.addItems(['1/8"','1/2"','3/4"','1"'])
+        # btnLayout.addWidget(combo)
+        #this changes increments
      
         button_master = QWidget()
         button_master.setLayout(btnLayout)
@@ -86,7 +93,7 @@ class MainWindow(QtWidgets.QMainWindow):
         ''' These are just for plot testing they will be from a txt file, the end goal being to map in 
         real time --function will call the text file as its being edited, or will upload full txt file'''
         zvals = [0,0,0,0,0,0,0,0]
-        for l in range (0,8):
+        for l in range (0,runClick.increment+1):
             zvals[l] = l
         xvals = [0,0,0,0,0,0,0,0]
         yvals = [0,0,0,0,0,0,0,0]
