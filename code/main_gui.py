@@ -11,7 +11,7 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg, NavigationTool
 from matplotlib.figure import Figure
 from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
-import run as runClick
+from run import run as runClick
 import zaxistest as step_motor
 
 
@@ -19,6 +19,8 @@ from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 import numpy as np
 
+increment= 5
+run = runClick(increment)
 
 class plot(FigureCanvasQTAgg):
     def __init__(self, parent=None, width=5, height=4, dpi=100):   
@@ -37,9 +39,10 @@ class plot(FigureCanvasQTAgg):
         n = 100
 
 
-        x,y,z,b = plot_points()
+        x,y,z,b = plot_pts()
 
-        ax.scatter(xs, ys, zs, c=c, marker=m)
+        ax.scatter(x, y, z, c=c, marker=m)
+        ax
         
         ax.set_xlabel('X inches ')
         ax.set_ylabel('Y inches')
@@ -51,7 +54,6 @@ class MainWindow(QtWidgets.QMainWindow):
     def __init__(self, *args, **kwargs):
         super(MainWindow, self).__init__(*args, **kwargs)
         
-        increments = 5
 
         layout = QGridLayout()      
 
@@ -62,7 +64,7 @@ class MainWindow(QtWidgets.QMainWindow):
         btnLayout = QHBoxLayout()
   
         runButton = QPushButton('Run', self)
-        runButton.clicked.connect(runClick.motor_data(increments)) ##fix later 
+        runButton.clicked.connect(run.motor_data()) ##fix later 
         btnLayout.addWidget(runButton)
 
 
@@ -89,16 +91,22 @@ class MainWindow(QtWidgets.QMainWindow):
         layWidget.setLayout(layout)
         self.setCentralWidget(layWidget)
     
-    def plot_pts():
-        ''' These are just for plot testing they will be from a txt file, the end goal being to map in 
-        real time --function will call the text file as its being edited, or will upload full txt file'''
-        zvals = [0,0,0,0,0,0,0,0]
-        for l in range (0,runClick.increment+1):
-            zvals[l] = l
-        xvals = [0,0,0,0,0,0,0,0]
-        yvals = [0,0,0,0,0,0,0,0]
-        b_field_z = runClick.plot_points
-        return xvals, yvals, b_field_z
+def plot_pts():
+    ''' These are just for plot testing they will be from a txt file, the end goal being to map in 
+    real time --function will call the text file as its being edited, or will upload full txt file'''
+    zvals = [0,0,0,0,0,0]
+    inc = run.getInc()
+    bfieldz = run.getPlot()
+    if bfieldz != zvals:
+        for l in range (0,inc + 1):
+            zvals[l] = l*2.5/inc
+    xvals = [0,0,0,0,0,0]
+    yvals = [0,0,0,0,0,0]
+    
+    for i in range(0,inc+1):
+        str_bfieldz = []
+        str_bfieldz[i] = str(bfieldz[i])
+    return xvals, yvals, str_bfieldz
 
 
 if __name__ =='__main__':
