@@ -2,7 +2,6 @@ import zaxistest as step_motor
 import peak_power_detector as peak_power_detector
 
 
-plot_points = [0]*increment
 def motor_data(increment):
     plot_points = []
     for i in range(0,increment+1):
