@@ -16,7 +16,7 @@ def move_up():
 
 
     # call the function, pass the arguments
-    mymotortest.motor_go(True, "Full" , 200, 0, False, .05)
+    mymotortest.motor_go(False, "Full" , 155, 0.01, False, .05)
 
     # good practise to cleanup GPIO at some point before exit
     GPIO.cleanup()
@@ -31,7 +31,7 @@ def move_down():
 
 
     # call the function, pass the arguments
-    mymotortest.motor_go(False, "Full" , 200, 0, False, .05)
+    mymotortest.motor_go(True, "Full" , 255, 0.01, False, .05)
 
     # good practise to cleanup GPIO at some point before exit
     GPIO.cleanup()
@@ -46,7 +46,7 @@ def calibrate_up():
 
 
     # call the function, pass the arguments
-    mymotortest.motor_go(True, "Full" , 100, 0, False, .05)
+    mymotortest.motor_go(False, "Full" , 255, 0.01, False, .05)
 
     # good practise to cleanup GPIO at some point before exit
     GPIO.cleanup()    
@@ -61,7 +61,7 @@ def calibrate_down():
 
 
     # call the function, pass the arguments
-    mymotortest.motor_go(False, "Full" , 100, 0, False, .05)
+    mymotortest.motor_go(True, "Full" , 255, 0.01, False, .05)
 
     # good practise to cleanup GPIO at some point before exit
     GPIO.cleanup()

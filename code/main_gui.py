@@ -15,8 +15,8 @@ from run import run as runClick
 import zaxistest as step_motor
 
 
-from mpl_toolkits.mplot3d import Axes3D
-import matplotlib.pyplot as plt
+#from mpl_toolkits.mplot3d import Axes3D
+#import matplotlib.pyplot as plt
 import numpy as np
 
 increment= 5
@@ -39,15 +39,15 @@ class plot(FigureCanvasQTAgg):
         n = 100
 
 
-        x,y,z,b = plot_pts()
+        x,y,z,b = ([0,0,0,0,0,0],[0,0,0,0,0,0],[0,.5,1,1.5,2,2.5],[1,1,1,1,1,1])
 
-        ax.scatter(x, y, z, c=c, marker=m)
-        for i, txt in enumerate(b):
-            ax.annotate(b, (x[i],y[i], z[i]))
+        ax.scatter(x, y, z, marker='o')
+#        for i, txt in enumerate(b):   label the points
+ #           ax.annotate(b, (x[i],y[i], z[i]))
         
-        ax.set_xlabel('X inches ')
-        ax.set_ylabel('Y inches')
-        ax.set_zlabel('Z inches')
+        ax.set_xlabel('X cm')
+        ax.set_ylabel('Y cm')
+        ax.set_zlabel('Z cm')
         #plt.show()
         super(plot, self).__init__(fig)
 
@@ -65,18 +65,19 @@ class MainWindow(QtWidgets.QMainWindow):
         btnLayout = QHBoxLayout()
   
         runButton = QPushButton('Run', self)
-        runButton.clicked.connect(run.motor_data()) ##fix later 
+        runButton.clicked.connect(lambda: run.motor_data()) ##fix later 
         btnLayout.addWidget(runButton)
 
 
 
         motorCal = QPushButton('Move Motor Down', self)
-        motorCal.clicked.connect(step_motor.calibrate_down()) ##fix later
+        motorCal.clicked.connect(lambda: step_motor.calibrate_down()) ##fix later
         btnLayout.addWidget(motorCal)
 
         motorCalUp = QPushButton("Move Motor Up", self)
-        motorCalUp.clicked.connect(step_motor.calibrate_down())
-        
+        motorCalUp.clicked.connect(lambda: step_motor.calibrate_up())
+        btnLayout.addWidget(motorCalUp)
+
         # combo = QComboBox()
         # combo.addItems(['1/8"','1/2"','3/4"','1"'])
         # btnLayout.addWidget(combo)
