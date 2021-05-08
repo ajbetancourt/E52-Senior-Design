@@ -16,7 +16,7 @@ def move_up():
 
 
     # call the function, pass the arguments
-    mymotortest.motor_go(False, "Full" , 155, 0.01, False, .05)
+    mymotortest.motor_go(False, "Full" , 255, 0.01, False, .05)
 
     # good practise to cleanup GPIO at some point before exit
     GPIO.cleanup()
