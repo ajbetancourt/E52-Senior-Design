@@ -30,10 +30,5 @@ overall structure
 pic 
 pic
 
-How to Run with RSA spectrum analyzer:
-  Download Code above
-  Open linux terminal on RasPi (ctrl + alt + t)
-  navigate to project folder
-  type: "python main_gui.py"
-  This will open the gui with an empty graph
-  Press "Run" button in upper right of GUI to run 
+Instructions in final report document
+
